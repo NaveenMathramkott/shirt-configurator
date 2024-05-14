@@ -1,5 +1,13 @@
+import AppCanvas from "./Canvas";
+import { Overlay } from "./Overlay";
+
 function App() {
-  return <div>Shirt Configurator</div>;
+  return (
+    <>
+      <AppCanvas />
+      <Overlay />
+    </>
+  );
 }
 
 export default App;

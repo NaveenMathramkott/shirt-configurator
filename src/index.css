@@ -101,12 +101,14 @@ section {
   position: relative;
   top: -25%;
   left: 300px;
+  width: 350px;
 }
 
 .support--content p {
   width: 350px;
   margin-bottom: 48px;
   line-height: 1.5rem;
+  color: white;
 }
 
 .bg {
@@ -116,6 +118,11 @@ section {
   width: 100%;
   height: 100%;
   z-index: -100;
+}
+
+.support--content > div > button {
+  background-color: #adde8f !important;
+  color: #000;
 }
 
 button {
@@ -232,7 +239,9 @@ button:hover {
 
 .decals img {
   width: 24px;
-  filter: saturate(0) invert(1) brightness(5.5);
+  height: 24px;
+  border-radius: 50%;
+  /* filter: saturate(0) invert(1) brightness(5.5); */
   transition: all 0.2s ease-in-out;
 }
 
@@ -287,7 +296,7 @@ button:hover {
   box-shadow: inset -250px 0 0 0 black;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 840px) {
   .section--container {
     margin-left: 15vw;
   }
@@ -310,5 +319,12 @@ button:hover {
   .support--content {
     top: -10%;
     left: 0;
+  }
+  .share {
+    top: 40px;
+    position: absolute;
+    left: 40px;
+    width: 140px;
+    height: 48px;
   }
 }

@@ -1,19 +1,30 @@
-import { Decal, useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { state } from "./store/store";
 import { useSnapshot } from "valtio";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
+import * as THREE from "three";
+import { useLoader } from "@react-three/fiber";
+import { useRef } from "react";
 
 function ShirtFullModel(props) {
   const snap = useSnapshot(state);
-  const texture = useTexture(`/${snap.decal}.png`);
+  const itemRefs = useRef([]);
+  const texture = useLoader(THREE.TextureLoader, `/${snap.decal}.png`);
   const { nodes, materials } = useGLTF("/shirt_full.glb");
+
   useFrame((state, delta) => {
-    easing.dampC(materials.Back.color, snap.color, 0.25, delta);
-    easing.dampC(materials.Front.color, snap.color, 0.25, delta);
-    easing.dampC(materials.Sleeve_Left.color, snap.color, 0.25, delta);
-    easing.dampC(materials.Sleeve_Right.color, snap.color, 0.25, delta);
+    itemRefs.current.forEach((ref) => {
+      easing.dampC(ref.color, snap.color, 0.15, delta);
+    });
   });
+
+  const addToRefs = (element) => {
+    if (element && !itemRefs.current.includes(element)) {
+      itemRefs.current.push(element);
+    }
+  };
+
   return (
     <group {...props} dispose={null}>
       <group
@@ -27,10 +38,34 @@ function ShirtFullModel(props) {
           material-roughness={10}
         />
         <mesh
+          geometry={nodes.Object_2002_7.geometry}
+          material={materials.Front}
+          material-roughness={10}
+        >
+          <meshBasicMaterial
+            ref={addToRefs}
+            map={texture}
+            transparent={false}
+            opacity={1}
+            depthWrite={true}
+            blending={THREE.NormalBlending}
+          />
+        </mesh>
+        <mesh
           geometry={nodes.Object_2002_1.geometry}
           material={materials.Back}
-          material-roughness={10}
-        />
+          material-roughness={1}
+        >
+          <meshBasicMaterial
+            ref={addToRefs}
+            map={texture}
+            transparent={false}
+            opacity={1}
+            depthWrite={true}
+            blending={THREE.NormalBlending}
+          />
+        </mesh>
+
         <mesh
           geometry={nodes.Object_2002_2.geometry}
           material={materials.Bottons}
@@ -44,32 +79,39 @@ function ShirtFullModel(props) {
         <mesh
           geometry={nodes.Object_2002_4.geometry}
           material={materials.Sleeve_Left}
-          material-roughness={10}
-        />
+          // material-roughness={10}
+        >
+          <meshBasicMaterial
+            ref={addToRefs}
+            map={texture}
+            transparent={false}
+            opacity={1}
+            depthWrite={true}
+            blending={THREE.NormalBlending}
+          />
+        </mesh>
+
         <mesh
           geometry={nodes.Object_2002_5.geometry}
           material={materials.Sleeve_Right}
-          material-roughness={10}
-        />
+          // material-roughness={10}
+        >
+          <meshBasicMaterial
+            ref={addToRefs}
+            map={texture}
+            transparent={false}
+            opacity={1}
+            depthWrite={true}
+            blending={THREE.NormalBlending}
+          />
+        </mesh>
+
         <mesh
           geometry={nodes.Object_2002_6.geometry}
           material={materials.Cuffs_Boundry}
           material-roughness={10}
         />
-        <mesh
-          geometry={nodes.Object_2002_7.geometry}
-          material={materials.Front}
-          material-roughness={10}
-        >
-          {/* <Decal
-            debug
-            position={[2, 0, 3]}
-            rotation={[0, 0, 0]}
-            scale={[2, 2, 1]}
-            map={texture}
-            // anisotropy={1}
-          /> */}
-        </mesh>
+
         <mesh
           geometry={nodes.Object_2002_8.geometry}
           material={materials.Shirt_Middle_Boundry}

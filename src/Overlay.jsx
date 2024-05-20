@@ -20,7 +20,6 @@ export function Overlay() {
         height: "100%",
       }}
     >
-      LOGO
       <motion.header
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 1, y: 0 }}
@@ -49,7 +48,7 @@ export function Overlay() {
                   duration: 0.3,
                 }}
               >
-                <h1>LET'S DO IT.</h1>
+                <h1>LET'z Custo mize</h1>
               </motion.div>
               <div className="support--content">
                 <motion.div
@@ -69,8 +68,6 @@ export function Overlay() {
                   <p>
                     Create your unique and exclusive shirt with our brand-new 3D
                     customization tool.{" "}
-                    <strong>Unleash your imagination</strong> and define your
-                    own style.
                   </p>
                   <button
                     style={{ background: snap.color }}
@@ -106,7 +103,7 @@ function Customizer() {
           ></div>
         ))}
       </div>
-      {/* <div className="decals">
+      <div className="decals">
         <div className="decals--container">
           {snap.decals.map((decal) => (
             <div
@@ -114,11 +111,11 @@ function Customizer() {
               className={`decal`}
               onClick={() => (state.decal = decal)}
             >
-              <img src={decal + "_thumb.png"} alt="brand" />
+              <img src={decal + ".png"} alt="brand" />
             </div>
           ))}
         </div>
-      </div> */}
+      </div>
       <button
         className="share"
         style={{ background: snap.color }}

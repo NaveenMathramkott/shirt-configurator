@@ -93,7 +93,7 @@ function Customizer() {
   const snap = useSnapshot(state);
   return (
     <div className="customizer">
-      <div className="color-options">
+      {/* <div className="color-options">
         {snap.colors.map((color) => (
           <div
             key={color}
@@ -102,7 +102,7 @@ function Customizer() {
             onClick={() => (state.color = color)}
           ></div>
         ))}
-      </div>
+      </div> */}
       <div className="decals">
         <div className="decals--container">
           {snap.decals.map((decal) => (

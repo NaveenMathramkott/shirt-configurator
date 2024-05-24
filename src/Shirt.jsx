@@ -13,11 +13,11 @@ function ShirtFullModel(props) {
   const texture = useLoader(THREE.TextureLoader, `/${snap.decal}.png`);
   const { nodes, materials } = useGLTF("/shirt_full.glb");
 
-  useFrame((state, delta) => {
-    itemRefs.current.forEach((ref) => {
-      easing.dampC(ref.color, snap.color, 0.15, delta);
-    });
-  });
+  // useFrame((state, delta) => {
+  //   itemRefs.current.forEach((ref) => {
+  //     easing.dampC(ref.color, snap.color, 0.15, delta);
+  //   });
+  // });
 
   const addToRefs = (element) => {
     if (element && !itemRefs.current.includes(element)) {
@@ -54,7 +54,7 @@ function ShirtFullModel(props) {
         <mesh
           geometry={nodes.Object_2002_1.geometry}
           material={materials.Back}
-          material-roughness={1}
+          material-roughness={10}
         >
           <meshBasicMaterial
             ref={addToRefs}
@@ -79,7 +79,7 @@ function ShirtFullModel(props) {
         <mesh
           geometry={nodes.Object_2002_4.geometry}
           material={materials.Sleeve_Left}
-          // material-roughness={10}
+          material-roughness={10}
         >
           <meshBasicMaterial
             ref={addToRefs}
@@ -94,7 +94,7 @@ function ShirtFullModel(props) {
         <mesh
           geometry={nodes.Object_2002_5.geometry}
           material={materials.Sleeve_Right}
-          // material-roughness={10}
+          material-roughness={10}
         >
           <meshBasicMaterial
             ref={addToRefs}
